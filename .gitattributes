@@ -1,0 +1,52 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto
+
+# C# files
+*.cs text eol=lf
+*.csproj text eol=lf
+*.sln text eol=lf
+*.slnx text eol=lf
+*.xaml text eol=lf
+*.xml text eol=lf
+
+# JavaScript/TypeScript files
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.mjs text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# YAML/YML
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# Text files
+*.txt text eol=lf
+*.md text eol=lf
+*.gitignore text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.webm binary
+*.mkv binary
+*.avi binary
+*.zip binary
+*.gz binary
+*.rar binary
+*.pfx binary
+*.p12 binary
