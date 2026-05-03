@@ -1,0 +1,39 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+
+# .NET build artifacts
+bin/
+obj/
+*.user
+.vs/
+publish/
+
+# IDE
+.idea/
+*.suo
+*.ncrunch*
+
+# Uploads / local videos
+videos/*.mp4
+videos/*.webm
+videos/*.mkv
+videos/*.avi
+uploads/
+
+# Certificates
+*.pfx
+*.pem
+*.key
+*.crt
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import AppSidebar from '@/components/AppSidebar'
+
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const role = cookieStore.get('auth_role')?.value ?? ''
+  const rawName = cookieStore.get('auth_name')?.value ?? ''
+  const fullName = decodeURIComponent(rawName)
+
+  if (role !== 'Administrador') {
+    redirect('/dashboard')
+  }
+
+  return (
+    <div className="app-shell flex min-h-screen">
+      <AppSidebar role={role} fullName={fullName} />
+      <main className="flex-1 overflow-auto">
+        <div className="page-shell">
+          <div className="page-content">{children}</div>
+        </div>
+      </main>
+    </div>
+  )
+}

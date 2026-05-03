@@ -1,0 +1,62 @@
+services:
+  postgres:
+    restart: always
+    ports: !reset []
+
+  api:
+    image: treinamentos-api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    working_dir: /app
+    command: ["dotnet", "Treinamentos.API.dll"]
+    environment: !reset
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
+      Jwt__Secret: ${Jwt__Secret}
+      Jwt__ExpirationHours: ${Jwt__ExpirationHours}
+      Jwt__Issuer: ${Jwt__Issuer}
+      Jwt__Audience: ${Jwt__Audience}
+      Google__ClientId: ${Google__ClientId}
+      Google__ClientSecret: ${Google__ClientSecret}
+      Smtp__Host: ${Smtp__Host}
+      Smtp__Port: ${Smtp__Port}
+      Smtp__User: ${Smtp__User}
+      Smtp__Password: ${Smtp__Password}
+      Smtp__FromName: ${Smtp__FromName}
+      Videos__StoragePath: ${Videos__StoragePath}
+      App__BaseUrl: ${App__BaseUrl}
+    volumes: !reset
+      - ./videos:/videos
+    restart: always
+    ports: !reset []
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  frontend:
+    image: treinamentos-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    working_dir: /app
+    command: ["node", "server.js"]
+    environment: !reset
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      INTERNAL_API_URL: ${INTERNAL_API_URL}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    volumes: !reset []
+    restart: always
+    ports: !reset []
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

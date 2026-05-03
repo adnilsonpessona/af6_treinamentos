@@ -1,0 +1,90 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: treinamentos-postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - treinamentos-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    container_name: treinamentos-api
+    working_dir: /src
+    command: dotnet watch --project src/Treinamentos.API/Treinamentos.API.csproj run --urls=http://0.0.0.0:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_URLS: http://0.0.0.0:5000
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
+      Jwt__Secret: ${Jwt__Secret}
+      Jwt__ExpirationHours: ${Jwt__ExpirationHours}
+      Jwt__Issuer: ${Jwt__Issuer}
+      Jwt__Audience: ${Jwt__Audience}
+      Google__ClientId: ${Google__ClientId}
+      Google__ClientSecret: ${Google__ClientSecret}
+      Smtp__Host: ${Smtp__Host}
+      Smtp__Port: ${Smtp__Port}
+      Smtp__User: ${Smtp__User}
+      Smtp__Password: ${Smtp__Password}
+      Smtp__FromName: ${Smtp__FromName}
+      Videos__StoragePath: ${Videos__StoragePath}
+      App__BaseUrl: ${App__BaseUrl}
+    volumes:
+      - ./backend:/src
+      - ./videos:/videos
+      - dotnet_nuget:/root/.nuget/packages
+    networks:
+      - treinamentos-network
+
+  frontend:
+    image: node:20-alpine
+    container_name: treinamentos-frontend
+    working_dir: /app
+    command: sh -c "if [ ! -d /app/node_modules/next ]; then npm ci --no-audit --no-fund; fi && npm run dev -- --hostname 0.0.0.0 --port 3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      WATCHPACK_POLLING: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      INTERNAL_API_URL: ${INTERNAL_API_URL}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+      - frontend_next:/app/.next
+    networks:
+      - treinamentos-network
+
+networks:
+  treinamentos-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+  dotnet_nuget:
+  frontend_node_modules:
+  frontend_next:
