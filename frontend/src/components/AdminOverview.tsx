@@ -22,9 +22,9 @@ export default function AdminOverview({ badge, title, description, stats }: Prop
         </div>
         <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[34rem]">
           {stats.map((stat) => (
-            <div key={stat.label} className="rounded-[22px] border border-brand-border/55 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(238,243,249,0.92)_100%)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
+            <div key={stat.label} className="rounded-lg border border-brand-border bg-brand-surface px-4 py-4">
               <div className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-brand-text-muted">{stat.label}</div>
-              <div className={`mt-2 text-3xl font-extrabold tracking-tighter ${stat.toneClassName ?? 'text-brand-text'}`}>
+              <div className={`mt-2 text-3xl font-bold ${stat.toneClassName ?? 'text-brand-text'}`}>
                 {stat.value}
               </div>
             </div>

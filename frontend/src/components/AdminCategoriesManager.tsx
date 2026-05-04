@@ -129,6 +129,8 @@ export default function AdminCategoriesManager({ token, initialCategories }: Pro
                 {editId === cat.id ? (
                   <div className="flex gap-2 items-center">
                     <input
+                      id={`category-edit-name-${cat.id}`}
+                      name={`category-edit-name-${cat.id}`}
                       type="text"
                       value={editName}
                       onChange={e => setEditName(e.target.value)}
@@ -209,17 +211,17 @@ export default function AdminCategoriesManager({ token, initialCategories }: Pro
       {error && <AdminFeedbackAlert tone="error">{error}</AdminFeedbackAlert>}
 
       {/* Tabs */}
-      <div className="inline-flex w-fit gap-1 rounded-[20px] border border-brand-border/60 bg-[linear-gradient(180deg,rgba(244,248,253,0.98)_0%,rgba(233,240,248,0.92)_100%)] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+      <div className="inline-flex w-fit gap-1 rounded-lg border border-brand-border bg-brand-surface p-1.5">
         <button
           onClick={() => setActiveTab('categories')}
-          className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${activeTab === 'categories' ? 'bg-[linear-gradient(180deg,#ffffff_0%,#f3f8ff_100%)] text-brand-text shadow-[0_12px_24px_rgba(16,31,51,0.08)]' : 'text-brand-text-muted hover:text-brand-text'}`}
+          className={`inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors ${activeTab === 'categories' ? 'bg-brand-light text-brand-primary' : 'text-brand-text-muted hover:text-brand-text'}`}
         >
           <Tags size={15} />
           Categorias
         </button>
         <button
           onClick={() => setActiveTab('subcategories')}
-          className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${activeTab === 'subcategories' ? 'bg-[linear-gradient(180deg,#ffffff_0%,#f3f8ff_100%)] text-brand-text shadow-[0_12px_24px_rgba(16,31,51,0.08)]' : 'text-brand-text-muted hover:text-brand-text'}`}
+          className={`inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors ${activeTab === 'subcategories' ? 'bg-brand-light text-brand-primary' : 'text-brand-text-muted hover:text-brand-text'}`}
         >
           <Layers3 size={15} />
           Subcategorias
@@ -239,6 +241,8 @@ export default function AdminCategoriesManager({ token, initialCategories }: Pro
               <label className="ui-label">Nome da categoria</label>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <input
+                  id="new-category-name"
+                  name="new-category-name"
                   type="text"
                   value={newCatName}
                   onChange={e => setNewCatName(e.target.value)}
@@ -283,6 +287,8 @@ export default function AdminCategoriesManager({ token, initialCategories }: Pro
             <div className="flex-1">
               <label className="ui-label">Nome da subcategoria</label>
               <input
+                id="new-subcategory-name"
+                name="new-subcategory-name"
                 type="text"
                 value={newSubName}
                 onChange={e => setNewSubName(e.target.value)}

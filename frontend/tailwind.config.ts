@@ -13,16 +13,16 @@ const config: Config = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        // Paleta de cores moderna para LMS
+        // Paleta Índigo + Verde do design system LMS.
         brand: {
-          primary: '#0056b3',      // Azul corporativo (#0056b3)
-          dark: '#0f172a',         // Slate-900 para áreas de foco (player)
-          success: '#10b981',      // Emerald-500 para progresso e conclusão
-          surface: '#f9fafb',      // Zinc-50 para áreas de leitura (fundo claro)
-          border: '#e4e4e7',       // Zinc-200 para bordas sutis
-          text: '#18181b',         // Zinc-900 para texto
-          light: '#fafafa',        // Branco suave
-          accent: '#059669',       // Emerald-600 para hover em progresso
+          primary: '#3730A3',
+          dark: '#111827',
+          success: '#16A34A',
+          surface: '#FFFFFF',
+          border: '#E2E8F0',
+          text: '#1E293B',
+          light: '#EEF2FF',
+          accent: '#FEF3C7',
         }
       },
       spacing: {
@@ -37,12 +37,12 @@ const config: Config = {
         'looser': '2',
       },
       backgroundImage: {
-        'gradient-progress': 'linear-gradient(90deg, #0056b3 0%, #0f172a 100%)',
-        'gradient-subtle': 'linear-gradient(135deg, #0056b3 0%, #0f172a 100%)',
+        'gradient-progress': 'linear-gradient(90deg, #16A34A 0%, #22C55E 100%)',
+        'gradient-subtle': 'linear-gradient(135deg, #3730A3 0%, #6366F1 100%)',
       },
       boxShadow: {
         'card': '0 1px 3px 0 rgba(0, 0, 0, 0.08)',
-        'card-hover': '0 4px 12px 0 rgba(0, 86, 179, 0.1)',
+        'card-hover': '0 4px 12px 0 rgba(55, 48, 163, 0.12)',
       },
     },
   },

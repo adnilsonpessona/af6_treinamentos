@@ -122,6 +122,8 @@ export default function AdminDepartmentsManager({ token, initialDepartments }: P
             <label className="ui-label">Nome do departamento</label>
             <div className="flex flex-col gap-3 sm:flex-row">
               <input
+                id="new-department-name"
+                name="new-department-name"
                 type="text"
                 value={newName}
                 onChange={e => setNewName(e.target.value)}
@@ -167,6 +169,8 @@ export default function AdminDepartmentsManager({ token, initialDepartments }: P
                   {editId === dept.id ? (
                     <div className="flex gap-2">
                       <input
+                        id={`department-edit-name-${dept.id}`}
+                        name={`department-edit-name-${dept.id}`}
                         type="text"
                         value={editName}
                         onChange={e => setEditName(e.target.value)}

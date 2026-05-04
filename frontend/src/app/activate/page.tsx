@@ -71,23 +71,23 @@ function ActivateForm() {
 
 export default function ActivatePage() {
   return (
-    <div className="min-h-screen bg-[linear-gradient(140deg,rgba(20,90,114,0.1),rgba(245,242,235,0.96)_45%,rgba(164,104,22,0.12))] px-6 py-10">
+    <div className="min-h-screen bg-brand-canvas px-6 py-10">
       <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-5xl items-center justify-center">
-        <div className="grid w-full gap-6 rounded-4xl border border-white/60 bg-white/90 p-4 shadow-[0_32px_80px_rgba(23,33,38,0.16)] backdrop-blur md:grid-cols-[1.15fr_0.85fr] md:p-6">
-          <section className="hidden rounded-[28px] bg-[linear-gradient(155deg,rgba(20,90,114,0.98),rgba(12,47,60,0.94)_58%,rgba(164,104,22,0.7))] p-8 text-white md:flex md:flex-col md:justify-between">
+        <div className="grid w-full gap-6 rounded-lg border border-brand-border bg-brand-surface p-4 shadow-card md:grid-cols-[1.15fr_0.85fr] md:p-6">
+          <section className="navbar hidden rounded-lg p-8 text-white md:flex md:flex-col md:justify-between">
             <div>
               <div className="ui-badge ui-badge-neutral w-fit border-white/15 bg-white/10 text-white">Treinamentos corporativos</div>
-              <h1 className="mt-6 font-reading text-4xl leading-tight">Seu acesso começa com uma senha segura e um ambiente pronto para aprender.</h1>
+              <h1 className="mt-6 text-white">Seu acesso começa com uma senha segura e um ambiente pronto para aprender.</h1>
               <p className="mt-4 max-w-md text-sm leading-7 text-white/78">
                 Ative sua conta para acessar cursos, acompanhar progresso e interagir com a jornada de desenvolvimento da empresa.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/12 bg-white/10 p-4">
+              <div className="rounded-lg border border-white/15 bg-white/10 p-4">
                 <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-white/64">Acesso rápido</p>
                 <p className="mt-3 text-2xl font-semibold">1 etapa</p>
               </div>
-              <div className="rounded-2xl border border-white/12 bg-white/10 p-4">
+              <div className="rounded-lg border border-white/15 bg-white/10 p-4">
                 <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-white/64">Segurança</p>
                 <p className="mt-3 text-2xl font-semibold">Senha pessoal</p>
               </div>

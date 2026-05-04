@@ -159,7 +159,7 @@ function ToolBtn({
       title={title}
       className={`rounded-lg px-2.5 py-1.5 font-mono text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
         active
-          ? 'bg-brand-primary text-white shadow-[0_10px_24px_rgba(20,90,114,0.22)]'
+          ? 'bg-brand-primary text-white shadow-[0_10px_24px_rgba(55,48,163,0.22)]'
           : 'text-brand-text-muted hover:bg-white hover:text-brand-text'
       }`}
     >

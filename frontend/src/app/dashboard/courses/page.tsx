@@ -1,15 +1,8 @@
 import { cookies } from 'next/headers'
-import Link from 'next/link'
 import { api } from '@/lib/api'
 import EmptyState from '@/components/EmptyState'
 import PageHeader from '@/components/PageHeader'
-
-function statusClasses(status: string) {
-  if (status === 'Publicado') return 'ui-badge-success'
-  if (status === 'AguardandoAprovacao') return 'ui-badge-warning'
-  if (status === 'Reprovado') return 'ui-badge-danger'
-  return 'ui-badge-neutral'
-}
+import CourseCard from '@/components/CourseCard'
 
 function statusLabel(status: string) {
   if (status === 'AguardandoAprovacao') return 'Aguardando'
@@ -117,38 +110,17 @@ export default async function TrainingsPage({
           {filtered.map((course) => {
             const progress = progressMap.get(course.id)
             return (
-              <Link
+              <CourseCard
                 key={course.id}
                 href={`/dashboard/courses/${course.id}`}
-                className="ui-card group p-5 transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                <div className="mb-4 rounded-[20px] border border-brand-border/60 bg-[linear-gradient(135deg,rgba(20,90,114,0.14),rgba(20,90,114,0.03)_52%,rgba(164,104,22,0.12))] p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="ui-badge ui-badge-info">
-                      {course.categoryName}
-                    </span>
-                    <span className={`ui-badge ${statusClasses(course.status)}`}>
-                      {statusLabel(course.status)}
-                    </span>
-                  </div>
-                  <p className="mt-10 text-xs font-semibold uppercase tracking-[0.14em] text-brand-text-muted">{course.lessonCount} aula(s)</p>
-                </div>
-                <h2 className="mb-2 line-clamp-2 font-semibold text-brand-text group-hover:text-brand-primary">{course.title}</h2>
-                <p className="mb-3 line-clamp-3 text-sm text-brand-text-muted">{course.description}</p>
-                <p className="text-xs text-brand-text-muted">Instrutor: {course.instructorName}</p>
-
-                {typeof progress === 'number' && (
-                  <div className="mt-4">
-                    <div className="mb-1 flex items-center justify-between text-xs">
-                      <span className="text-brand-text-muted">Progresso</span>
-                      <span className="font-semibold text-brand-primary">{progress}%</span>
-                    </div>
-                    <div className="h-2 w-full rounded-full bg-brand-border/70">
-                      <div className="h-2 rounded-full bg-[linear-gradient(90deg,#145a72_0%,#1f7a5a_100%)]" style={{ width: `${progress}%` }} />
-                    </div>
-                  </div>
-                )}
-              </Link>
+                title={course.title}
+                description={course.description}
+                category={course.categoryName}
+                instructor={course.instructorName}
+                lessonCount={course.lessonCount}
+                progress={progress}
+                status={course.status}
+              />
             )
           })}
         </div>

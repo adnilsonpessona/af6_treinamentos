@@ -120,7 +120,7 @@ export default function CourseApprovalList({ courses, token }: { courses: any[];
                 <p className="mt-2 text-sm leading-6 text-brand-text-muted">{course.description}</p>
                 <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-brand-text-muted">Instrutor: {course.instructorName}</p>
               </div>
-              <div className="min-w-[16rem] rounded-[20px] border border-brand-border/60 bg-[linear-gradient(180deg,rgba(244,248,253,0.98)_0%,rgba(233,240,248,0.92)_100%)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.82)]">
+              <div className="min-w-[16rem] rounded-lg border border-brand-border bg-brand-light px-4 py-4">
                 <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-brand-text-muted">Ação necessária</p>
                 <p className="mt-2 text-sm leading-6 text-brand-text">Publique o curso ou registre um motivo objetivo para reprovação.</p>
               </div>

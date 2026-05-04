@@ -52,6 +52,15 @@ function StatCard({ label, value }: { label: string; value: string | number }) {
 
 const PAGE_SIZE = 15
 
+function MiniProgress({ value, className = 'w-12' }: { value: number; className?: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-sm font-semibold text-brand-primary">{value}%</span>
+      <progress className={`progress-bar ${className}`} value={value} max={100} aria-label={`Progresso ${value}%`} />
+    </div>
+  )
+}
+
 // ---- Admin/Gestor progress table ----
 function UserProgressTable({
   items,
@@ -136,13 +145,13 @@ function UserProgressTable({
         <table className="w-full text-sm">
           <thead className="border-b border-brand-border/60 bg-brand-light text-[11px] font-bold uppercase tracking-[0.14em] text-brand-text-muted">
             <tr>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('userName')}>Usuário{sortIcon('userName')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('courseTitle')}>Curso{sortIcon('courseTitle')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('userName')}>Usuário{sortIcon('userName')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('courseTitle')}>Curso{sortIcon('courseTitle')}</th>
               {showDepartment && (
-                <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('department')}>Departamento{sortIcon('department')}</th>
+                <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('department')}>Departamento{sortIcon('department')}</th>
               )}
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-brand-border/50">
@@ -152,15 +161,7 @@ function UserProgressTable({
                 <td className="px-5 py-4 text-brand-text-muted">{item.courseTitle}</td>
                 {showDepartment && <td className="px-5 py-4 text-brand-text-muted">{item.department}</td>}
                 <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-brand-primary">{item.progressPercentage}%</span>
-                    <div className="w-12 h-1.5 bg-brand-border rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-progress rounded-full"
-                        style={{ width: `${item.progressPercentage}%` }}
-                      />
-                    </div>
-                  </div>
+                  <MiniProgress value={item.progressPercentage} />
                 </td>
                 <td className="px-5 py-4">
                   <span className={`ui-badge ${
@@ -244,10 +245,10 @@ function StudentProgressTable({ items }: { items: StudentProgressItem[] }) {
         <table className="w-full text-sm">
           <thead className="border-b border-brand-border/60 bg-brand-light text-[11px] font-bold uppercase tracking-[0.14em] text-brand-text-muted">
             <tr>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('userName')}>Aluno{sortIcon('userName')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('department')}>Departamento{sortIcon('department')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('userName')}>Aluno{sortIcon('userName')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('department')}>Departamento{sortIcon('department')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-brand-border/50">
@@ -256,15 +257,7 @@ function StudentProgressTable({ items }: { items: StudentProgressItem[] }) {
                 <td className="px-5 py-4 text-brand-text font-medium">{student.userName}</td>
                 <td className="px-5 py-4 text-brand-text-muted">{student.department}</td>
                 <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-brand-primary">{student.progressPercentage}%</span>
-                    <div className="w-12 h-1.5 bg-brand-border rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-progress rounded-full"
-                        style={{ width: `${student.progressPercentage}%` }}
-                      />
-                    </div>
-                  </div>
+                  <MiniProgress value={student.progressPercentage} />
                 </td>
                 <td className="px-5 py-4">
                   <span className={`ui-badge ${
@@ -347,10 +340,10 @@ function PersonalProgressTable({ items }: { items: PersonalCourse[] }) {
         <table className="w-full text-sm">
           <thead className="border-b border-brand-border/60 bg-brand-light text-[11px] font-bold uppercase tracking-[0.14em] text-brand-text-muted">
             <tr>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('courseTitle')}>Curso{sortIcon('courseTitle')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('categoryName')}>Categoria{sortIcon('categoryName')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
-              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-black/2" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('courseTitle')}>Curso{sortIcon('courseTitle')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('categoryName')}>Categoria{sortIcon('categoryName')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('progressPercentage')}>Progresso{sortIcon('progressPercentage')}</th>
+              <th className="cursor-pointer select-none px-5 py-4 text-left transition-colors hover:bg-brand-light" onClick={() => toggleSort('isCompleted')}>Concluído{sortIcon('isCompleted')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-brand-border/50">
@@ -359,15 +352,7 @@ function PersonalProgressTable({ items }: { items: PersonalCourse[] }) {
                 <td className="px-5 py-4 text-brand-text font-medium">{course.courseTitle}</td>
                 <td className="px-5 py-4 text-brand-text-muted">{course.categoryName}</td>
                 <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-brand-primary">{course.progressPercentage}%</span>
-                    <div className="w-12 h-1.5 bg-brand-border rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-progress rounded-full"
-                        style={{ width: `${course.progressPercentage}%` }}
-                      />
-                    </div>
-                  </div>
+                  <MiniProgress value={course.progressPercentage} />
                 </td>
                 <td className="px-5 py-4">
                   <span className={`ui-badge ${
@@ -461,19 +446,11 @@ export default function ReportsView({ role, data }: { role: string; data: any })
                 </thead>
                 <tbody className="divide-y divide-brand-border/50">
                   {(course.lessonStats ?? []).map((lesson) => (
-                    <tr key={lesson.lessonId} className="transition-colors hover:bg-white/70">
+                    <tr key={lesson.lessonId} className="transition-colors hover:bg-brand-light">
                       <td className="px-5 py-3 text-brand-text font-medium">{lesson.lessonTitle}</td>
                       <td className="px-5 py-3 font-medium text-brand-text-muted">{lesson.totalAccesses}</td>
                       <td className="px-5 py-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-brand-primary">{lesson.completionPercentage}%</span>
-                          <div className="w-16 h-1.5 bg-brand-border rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-progress rounded-full"
-                              style={{ width: `${lesson.completionPercentage}%` }}
-                            />
-                          </div>
-                        </div>
+                        <MiniProgress value={lesson.completionPercentage} className="w-16" />
                       </td>
                     </tr>
                   ))}

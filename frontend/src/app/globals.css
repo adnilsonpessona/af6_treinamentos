@@ -1,24 +1,69 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+:root {
+  --font-ui: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-primary: #3730A3;
+  --color-primary-light: #6366F1;
+  --color-primary-soft: #EEF2FF;
+  --color-success: #16A34A;
+  --color-success-soft: #DCFCE7;
+  --color-accent: #F59E0B;
+  --color-accent-soft: #FEF3C7;
+  --color-danger: #DC2626;
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-text-1: #1E293B;
+  --color-text-2: #64748B;
+  --color-text-3: #CBD5E1;
+
+  --color-brand-canvas: var(--color-bg);
+  --color-brand-surface: var(--color-surface);
+  --color-brand-surface-strong: var(--color-surface);
+  --color-brand-primary: var(--color-primary);
+  --color-brand-primary-strong: #312E81;
+  --color-brand-primary-light: var(--color-primary-light);
+  --color-brand-primary-soft: var(--color-primary-soft);
+  --color-brand-dark: #111827;
+  --color-brand-secondary: var(--color-text-2);
+  --color-brand-success: var(--color-success);
+  --color-brand-success-soft: var(--color-success-soft);
+  --color-brand-warning: var(--color-accent);
+  --color-brand-warning-soft: var(--color-accent-soft);
+  --color-brand-danger: var(--color-danger);
+  --color-brand-border: var(--color-border);
+  --color-brand-border-strong: #CBD5E1;
+  --color-brand-text: var(--color-text-1);
+  --color-brand-text-muted: var(--color-text-2);
+  --color-brand-text-disabled: var(--color-text-3);
+  --color-brand-light: var(--color-primary-soft);
+  --color-brand-accent: var(--color-accent-soft);
+}
+
 @theme {
   --font-sans: var(--font-ui);
-  --font-serif: var(--font-reading);
-  --color-brand-canvas: #eef4fb;
-  --color-brand-surface: #f8fbff;
-  --color-brand-surface-strong: #ffffff;
-  --color-brand-primary: #0b5d84;
-  --color-brand-primary-strong: #083f5d;
-  --color-brand-secondary: #8093a9;
-  --color-brand-success: #1b8d67;
-  --color-brand-warning: #c28a24;
-  --color-brand-danger: #c65a5a;
-  --color-brand-border: #d8e2ee;
-  --color-brand-border-strong: #b6c7d8;
-  --color-brand-text: #162333;
-  --color-brand-text-muted: #657487;
-  --color-brand-light: #eef3f9;
-  --color-brand-accent: #dce8f4;
+  --color-brand-canvas: #F8FAFC;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-surface-strong: #FFFFFF;
+  --color-brand-primary: #3730A3;
+  --color-brand-primary-strong: #312E81;
+  --color-brand-primary-light: #6366F1;
+  --color-brand-primary-soft: #EEF2FF;
+  --color-brand-dark: #111827;
+  --color-brand-secondary: #64748B;
+  --color-brand-success: #16A34A;
+  --color-brand-success-soft: #DCFCE7;
+  --color-brand-warning: #F59E0B;
+  --color-brand-warning-soft: #FEF3C7;
+  --color-brand-danger: #DC2626;
+  --color-brand-border: #E2E8F0;
+  --color-brand-border-strong: #CBD5E1;
+  --color-brand-text: #1E293B;
+  --color-brand-text-muted: #64748B;
+  --color-brand-text-disabled: #CBD5E1;
+  --color-brand-light: #EEF2FF;
+  --color-brand-accent: #FEF3C7;
 }
 
 html {
@@ -29,22 +74,22 @@ body {
   font-family: var(--font-ui), ui-sans-serif, system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f5f5f5;
+  background: var(--color-brand-canvas);
   color: var(--color-brand-text);
 }
 
 h1 {
-  font-size: clamp(2rem, 2.6vw, 2.85rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.04;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
   color: var(--color-brand-text);
 }
 
 h2 {
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--color-brand-text);
 }
 
@@ -56,6 +101,7 @@ h3 {
 
 p {
   color: var(--color-brand-text-muted);
+  line-height: 1.6;
 }
 
 .tiptap p.is-editor-empty:first-child::before {
@@ -70,8 +116,8 @@ p {
   max-width: none;
   color: var(--color-brand-text);
   line-height: 1.75;
-  font-family: var(--font-reading), ui-serif, Georgia, serif;
-  font-size: 1.05rem;
+  font-family: var(--font-ui), ui-sans-serif, system-ui;
+  font-size: 1rem;
 }
 
 .prose p {
@@ -101,15 +147,15 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(252, 251, 248, 1), 0 0 0 5px rgba(20, 90, 114, 0.35);
+  box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 5px rgba(99, 102, 241, 0.32);
 }
 
 ::selection {
-  background: rgba(20, 90, 114, 0.18);
+  background: rgba(99, 102, 241, 0.18);
 }
 
 .app-shell {
-  background: #f5f5f5;
+  background: var(--color-bg);
 }
 
 .page-shell {
@@ -117,35 +163,35 @@ textarea:focus-visible {
   min-height: 100vh;
   border: none;
   border-radius: 0;
-  background: #ffffff;
+  background: transparent;
   box-shadow: none;
 }
 
 .page-content {
   max-width: 92rem;
+  width: 100%;
   padding: 2rem;
 }
 
 .ui-card {
-  border: 1px solid rgba(182, 199, 216, 0.55);
-  border-radius: 24px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 250, 255, 0.98) 100%);
-  box-shadow: 0 14px 30px rgba(16, 31, 51, 0.07);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .ui-card-muted {
-  border: 1px solid rgba(182, 199, 216, 0.45);
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(246, 250, 255, 0.94) 0%, rgba(233, 241, 249, 0.88) 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-primary-soft);
 }
 
 .ui-label {
   display: block;
   margin-bottom: 0.45rem;
   font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  letter-spacing: 0;
   color: var(--color-brand-text);
 }
 
@@ -159,11 +205,10 @@ textarea:focus-visible {
 .ui-textarea,
 .ui-select-trigger {
   width: 100%;
-  border: 1px solid rgba(182, 199, 216, 0.9);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
   color: var(--color-brand-text);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .ui-input,
@@ -184,20 +229,22 @@ textarea:focus-visible {
 .ui-input::placeholder,
 .ui-textarea::placeholder {
   color: #87939a;
+  color: var(--color-text-3);
 }
 
 .ui-input:disabled,
 .ui-textarea:disabled,
 .ui-select-trigger:disabled {
   cursor: not-allowed;
-  background: rgba(235, 241, 248, 0.95);
-  color: #8a96a5;
+  background: #F1F5F9;
+  color: var(--color-text-3);
 }
 
 .ui-input-with-icon {
   padding-left: 3.4rem;
 }
 
+.btn,
 .ui-button-primary,
 .ui-button-secondary,
 .ui-button-ghost,
@@ -205,43 +252,70 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  min-height: 2.9rem;
-  border-radius: 999px;
-  padding: 0.78rem 1.3rem;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  gap: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  line-height: 1;
 }
 
+/* Use .btn plus a variant and size, e.g. .btn .btn-primary .btn-md. */
+.btn-sm {
+  min-height: 28px;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+}
+
+.btn-md,
+.ui-button-primary,
+.ui-button-secondary,
+.ui-button-ghost,
+.ui-button-danger {
+  min-height: 36px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+}
+
+.btn-primary,
 .ui-button-primary {
-  background: linear-gradient(180deg, #1670a0 0%, #0b5d84 100%);
-  color: #f7fafb;
-  box-shadow: 0 12px 26px rgba(11, 93, 132, 0.24);
+  background: var(--color-primary);
+  color: #FFFFFF;
 }
 
+.btn-primary:hover,
 .ui-button-primary:hover {
-  background: linear-gradient(180deg, #105f88 0%, #083f5d 100%);
+  background: #4338CA;
 }
 
+.btn-secondary,
 .ui-button-secondary {
-  border: 1px solid rgba(182, 199, 216, 0.95);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--color-brand-text);
+  border-color: var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
 }
 
+.btn-secondary:hover,
 .ui-button-secondary:hover,
 .ui-button-ghost:hover {
-  background: rgba(238, 243, 249, 0.95);
+  background: var(--color-primary-soft);
 }
 
+.btn-ghost,
 .ui-button-ghost {
-  color: var(--color-brand-text-muted);
+  background: transparent;
+  color: var(--color-primary-light);
 }
 
+.btn-danger,
 .ui-button-danger {
-  background: linear-gradient(180deg, #bf5757 0%, #a23b3b 100%);
-  color: #fff8f8;
+  background: var(--color-danger);
+  color: #FFFFFF;
 }
 
 .ui-button-primary:disabled,
@@ -259,9 +333,9 @@ textarea:focus-visible {
   gap: 0.45rem;
   border-radius: 999px;
   padding: 0.36rem 0.7rem;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .ui-badge::before {
@@ -274,36 +348,58 @@ textarea:focus-visible {
 }
 
 .ui-badge-neutral {
-  background: rgba(123, 139, 142, 0.12);
-  color: #526267;
+  background: #F1F5F9;
+  color: var(--color-text-2);
 }
 
 .ui-badge-info {
-  background: rgba(20, 90, 114, 0.12);
-  color: #145a72;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
 .ui-badge-success {
-  background: rgba(31, 122, 90, 0.12);
-  color: #1f7a5a;
+  background: var(--color-success-soft);
+  color: #166534;
 }
 
 .ui-badge-warning {
-  background: rgba(164, 104, 22, 0.14);
-  color: #9a6216;
+  background: var(--color-accent-soft);
+  color: #92400E;
 }
 
 .ui-badge-danger {
-  background: rgba(162, 59, 59, 0.12);
-  color: #a23b3b;
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.badge-beginner,
+.badge-completed {
+  background: var(--color-success-soft);
+  color: #166534;
+}
+
+.badge-intermediate,
+.badge-in-progress {
+  background: var(--color-accent-soft);
+  color: #92400E;
+}
+
+.badge-advanced {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.badge-new {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
 .ui-stat-card {
-  border: 1px solid rgba(188, 180, 166, 0.5);
-  border-radius: 24px;
-  padding: 1.4rem;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 24px rgba(28, 36, 42, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .ui-stat-number {
@@ -315,30 +411,42 @@ textarea:focus-visible {
 }
 
 .ui-alert {
-  border-radius: 18px;
+  border-radius: 8px;
   padding: 0.9rem 1rem;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   border: 1px solid transparent;
 }
 
 .ui-alert-error {
-  background: rgba(162, 59, 59, 0.09);
-  border-color: rgba(162, 59, 59, 0.18);
-  color: #8f3434;
+  background: #FEE2E2;
+  border-color: var(--color-danger);
+  color: #991B1B;
 }
 
 .ui-alert-success {
-  background: rgba(31, 122, 90, 0.1);
-  border-color: rgba(31, 122, 90, 0.18);
-  color: #185e46;
+  background: var(--color-success-soft);
+  border-color: var(--color-success);
+  color: #166534;
+}
+
+.ui-alert-info {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.ui-alert-warning {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: #92400E;
 }
 
 .ui-table-shell {
   overflow: hidden;
-  border: 1px solid rgba(182, 199, 216, 0.6);
-  border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 248, 253, 0.96) 100%);
-  box-shadow: 0 14px 30px rgba(16, 31, 51, 0.06);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .ui-section-title {
@@ -349,6 +457,99 @@ textarea:focus-visible {
   color: var(--color-brand-text-muted);
 }
 
+/* CourseCard: reusable LMS course tile with 16:9 thumbnail, progress and CTA footer. */
+.card-course {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.card-course-thumbnail {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  background: var(--color-primary-soft);
+}
+
+/* ProgressBar: use <progress class="progress-bar" value="40" max="100" /> with an optional .progress-label. */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 4px;
+  background: var(--color-border);
+}
+
+.progress-bar::-webkit-progress-bar {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.progress-bar::-webkit-progress-value {
+  background: var(--color-success);
+  border-radius: 4px;
+}
+
+.progress-bar::-moz-progress-bar {
+  background: var(--color-success);
+  border-radius: 4px;
+}
+
+.progress-label {
+  color: var(--color-primary-light);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Avatar: circular user image or initials fallback. */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Navbar: primary app navigation bar with active item support. */
+.navbar {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.navbar-link {
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.navbar-link-active,
+.navbar-link:hover {
+  background: var(--color-primary-light);
+  color: #FFFFFF;
+}
+
+/* CourseSidebar: lesson navigation with accordions, active lesson and completed state. */
+.course-sidebar {
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.course-lesson-link {
+  border-left: 3px solid transparent;
+}
+
+.course-lesson-link-active {
+  border-left-color: var(--color-primary-light);
+  background: var(--color-primary-soft);
+}
+
 @media (max-width: 768px) {
   .page-shell {
     margin: 0;
@@ -357,7 +558,7 @@ textarea:focus-visible {
   }
 
   .page-content {
-    padding: 1.25rem;
+    padding: 5rem 1.25rem 1.25rem;
   }
 }
 
@@ -378,4 +579,3 @@ textarea:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
-

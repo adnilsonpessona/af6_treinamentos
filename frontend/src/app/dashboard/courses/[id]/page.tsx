@@ -2,6 +2,10 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { api } from '@/lib/api'
 import { notFound } from 'next/navigation'
+import Badge from '@/components/Badge'
+import ProgressBar from '@/components/ProgressBar'
+import { ButtonLink } from '@/components/Button'
+import { CheckCircle2, FileText, PlayCircle } from 'lucide-react'
 
 export default async function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -29,26 +33,25 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
         <span className="text-brand-text font-medium">{course.title}</span>
       </div>
 
-      {/* Hero - Informações do curso */}
-      <div className="ui-card p-7 sm:p-8">
+      {/* Hero: course pages use a primary indigo cover with white text. */}
+      <div className="rounded-lg bg-brand-primary p-7 text-white sm:p-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl space-y-3">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="ui-badge ui-badge-info">{course.categoryName}</span>
-              <span className="ui-badge ui-badge-neutral">{course.instructorName}</span>
+              <Badge tone="new" className="bg-white text-brand-primary">{course.categoryName}</Badge>
+              <Badge tone="intermediate">{course.instructorName}</Badge>
             </div>
-            <h1>{course.title}</h1>
-            <p className="max-w-3xl text-base leading-7 text-brand-text-muted">{course.description}</p>
+            <h1 className="text-white">{course.title}</h1>
+            <p className="max-w-3xl text-base leading-7 text-white/80">{course.description}</p>
           </div>
-          <div className="ui-card-muted min-w-[15rem] px-5 py-4">
-            <div className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-brand-text-muted">Conteúdo</div>
-            <div className="mt-3 text-3xl font-extrabold tracking-[-0.05em] text-brand-text">{course.lessons?.length ?? 0}</div>
-            <div className="mt-1 text-sm text-brand-text-muted">aula(s) disponíveis</div>
+          <div className="min-w-[15rem] rounded-lg border border-white/20 bg-white/10 px-5 py-4">
+            <div className="text-xs font-semibold uppercase text-white/72">Conteúdo</div>
+            <div className="mt-3 text-3xl font-bold text-white">{course.lessons?.length ?? 0}</div>
+            <div className="mt-1 text-sm text-white/72">aula(s) disponíveis</div>
           </div>
         </div>
       </div>
 
-      {/* Card de progresso com gradiente */}
       {progress && (
         <div className="ui-card p-6">
           <div className="flex items-center justify-between mb-4">
@@ -64,22 +67,11 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
             </div>
           </div>
 
-          {/* Barra de progresso com gradiente e animação */}
-          <div className="relative w-full h-3 bg-brand-border rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-progress rounded-full shadow-lg transition-all duration-500 ease-out"
-              style={{ width: `${progress.progressPercentage}%` }}
-            />
-            <div
-              className="absolute top-0 left-0 h-full w-1 bg-white/40 blur-sm transition-all duration-500"
-              style={{ left: `${progress.progressPercentage}%` }}
-            />
-          </div>
+          <ProgressBar value={Number(progress.progressPercentage ?? 0)} label="Progresso do curso" />
 
-          {/* Status de conclusão */}
           {progress.courseCompleted && (
             <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-brand-success">
-              <span className="inline-flex w-6 h-6 items-center justify-center rounded-full bg-brand-success text-white text-xs">✓</span>
+              <CheckCircle2 size={20} />
               Curso concluído com sucesso!
             </div>
           )}
@@ -104,40 +96,30 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
                   <Link
                     key={lesson.id}
                     href={`/dashboard/courses/${id}/lessons/${lesson.id}`}
-                    className="group flex items-start gap-4 border-l-4 border-transparent p-4 transition-colors duration-200 hover:border-brand-primary hover:bg-brand-surface"
+                    className="course-lesson-link group flex items-start gap-4 p-4 transition-colors duration-200 hover:bg-brand-light"
                   >
-                    {/* Badge com número ou checkmark */}
                     <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0 transition-all ${
                       isCompleted
                         ? 'bg-brand-success/10 text-brand-success'
                         : 'bg-brand-primary/10 text-brand-primary group-hover:bg-brand-primary group-hover:text-white'
                     }`}>
-                      {isCompleted ? '✓' : index + 1}
+                      {isCompleted ? <CheckCircle2 size={18} /> : index + 1}
                     </div>
 
-                    {/* Informações da aula */}
                     <div className="flex-1 min-w-0">
                       <p className={`font-semibold text-brand-text truncate ${isCompleted ? 'text-brand-text/70' : ''}`}>
                         {lesson.title}
                       </p>
-                      <p className="mt-1 text-xs text-brand-text/50">
-                        {lesson.hasVideo && '🎥 Vídeo'}
-                        {lesson.hasVideo && lesson.hasText && ' · '}
-                        {lesson.hasText && '📄 Texto'}
-                      </p>
+                      <div className="mt-1 flex items-center gap-3 text-xs text-brand-text-muted">
+                        {lesson.hasVideo && <span className="inline-flex items-center gap-1"><PlayCircle size={13} /> Vídeo</span>}
+                        {lesson.hasText && <span className="inline-flex items-center gap-1"><FileText size={13} /> Texto</span>}
+                      </div>
                     </div>
 
-                    {/* Badge de status */}
                     {lp && (
-                      <div className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors flex-shrink-0 ${
-                        isCompleted
-                          ? 'bg-brand-success/10 text-brand-success'
-                          : lp.videoPercentage && lp.videoPercentage > 0
-                          ? 'bg-yellow-50 text-yellow-700'
-                          : 'bg-brand-border text-brand-text/60'
-                      }`}>
+                      <Badge tone={isCompleted ? 'completed' : lp.videoPercentage ? 'in-progress' : 'neutral'} className="shrink-0">
                         {isCompleted ? '✓ Concluída' : lp.videoPercentage ? `${lp.videoPercentage}%` : 'Não iniciada'}
-                      </div>
+                      </Badge>
                     )}
                   </Link>
                 )
@@ -146,6 +128,8 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ i
           )}
         </div>
       </div>
+
+      <ButtonLink href="/dashboard/courses" variant="secondary">Voltar ao catálogo</ButtonLink>
     </div>
   )
 }

@@ -49,7 +49,7 @@ export default function AdminPagination({ current, total, onChange, count, label
               onClick={() => onChange(page)}
               className={`min-h-0 rounded-full border px-3 py-2 text-sm font-semibold transition-colors ${
                 current === page
-                  ? 'border-brand-primary bg-brand-primary text-white shadow-[0_10px_18px_rgba(20,90,114,0.18)]'
+                  ? 'border-brand-primary bg-brand-primary text-white shadow-[0_10px_18px_rgba(55,48,163,0.18)]'
                   : 'border-brand-border/70 bg-white text-brand-text hover:bg-brand-light'
               }`}
             >

@@ -168,11 +168,11 @@ export default function NewCourseForm({ token, categories, companies, department
       <div className="ui-card-muted space-y-3 p-4">
         <p className="ui-section-title">Abrangência</p>
         <label className="flex items-center gap-2 text-sm text-brand-text">
-          <input type="checkbox" checked={availableForAllCompanies} onChange={(e) => setAvailableForAllCompanies(e.target.checked)} />
+          <input id="new-course-all-companies" name="new-course-all-companies" type="checkbox" checked={availableForAllCompanies} onChange={(e) => setAvailableForAllCompanies(e.target.checked)} />
           Disponível para todas as empresas
         </label>
         <label className="flex items-center gap-2 text-sm text-brand-text">
-          <input type="checkbox" checked={availableForAllDepartments} onChange={(e) => setAvailableForAllDepartments(e.target.checked)} />
+          <input id="new-course-all-departments" name="new-course-all-departments" type="checkbox" checked={availableForAllDepartments} onChange={(e) => setAvailableForAllDepartments(e.target.checked)} />
           Disponível para todos os departamentos
         </label>
       </div>

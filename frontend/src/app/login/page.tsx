@@ -33,15 +33,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(11,93,132,0.14),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(44,102,189,0.16),transparent_28%),linear-gradient(180deg,#edf4fb_0%,#f8fbff_100%)] px-4 py-8 md:px-8 md:py-10">
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.46)_0%,transparent_45%)]" />
-      <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 overflow-hidden rounded-[34px] border border-white/55 bg-white/55 shadow-[0_28px_90px_rgba(16,31,51,0.16)] backdrop-blur-xl lg:grid-cols-[1.04fr_0.96fr]">
-        <section className="relative hidden overflow-hidden bg-[linear-gradient(180deg,#0b1730_0%,#0e1c3f_52%,#13254f_100%)] lg:flex lg:items-center lg:justify-center lg:p-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(102,173,255,0.16),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(11,93,132,0.22),transparent_28%)]" />
+    <div className="min-h-screen bg-brand-canvas px-4 py-8 md:px-8 md:py-10">
+      <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 overflow-hidden rounded-lg border border-brand-border bg-brand-surface shadow-card lg:grid-cols-[1.04fr_0.96fr]">
+        <section className="navbar relative hidden overflow-hidden lg:flex lg:items-center lg:justify-center lg:p-12">
           <div className="relative flex max-w-md flex-col items-center text-center">
-            <div className="rounded-[28px] border border-white/10 bg-white/6 px-8 py-8 shadow-[0_22px_54px_rgba(3,9,18,0.28)] backdrop-blur-sm">
-              <Image src="/af6-logo.svg" alt="AF6" width={220} height={74} style={{ width: '220px', height: 'auto' }} />
-              <h1 className="mt-7 text-[2.3rem] tracking-tighter text-white">AF6 Treinamentos</h1>
+            <div className="rounded-lg border border-white/15 bg-white/10 px-8 py-8">
+              <Image src="/af6-logo.svg" alt="AF6" width={220} height={74} className="h-auto w-[220px]" />
+              <h1 className="mt-7 text-white">AF6 Treinamentos</h1>
             </div>
           </div>
         </section>
@@ -50,8 +48,8 @@ export default function LoginPage() {
           <div className="ui-card w-full max-w-lg p-8 sm:p-10">
             <div className="mb-8">
               <div className="flex flex-col items-start gap-5">
-                <Image src="/af6-logo.svg" alt="AF6 Treinamentos" width={170} height={57} style={{ width: '170px', height: 'auto' }} className="lg:hidden" />
-                <h1 className="text-[2rem] sm:text-[2.35rem]">AF6 Treinamentos</h1>
+                <Image src="/af6-logo.svg" alt="AF6 Treinamentos" width={170} height={57} className="h-auto w-[170px] lg:hidden" />
+                <h1>AF6 Treinamentos</h1>
               </div>
             </div>
 

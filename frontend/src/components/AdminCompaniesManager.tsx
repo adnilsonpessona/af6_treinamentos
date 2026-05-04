@@ -263,22 +263,22 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
               </tr>
               <tr className="border-b border-brand-border/45 bg-white/70">
                 <td className="px-3 py-2">
-                  <input value={filterEmpresa} onChange={(e) => setFilterEmpresa(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-20 px-3 py-2 text-xs" />
+                  <input id="filter-company-empresa" name="filter-company-empresa" value={filterEmpresa} onChange={(e) => setFilterEmpresa(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-20 px-3 py-2 text-xs" />
                 </td>
                 <td className="px-3 py-2">
-                  <input value={filterRevenda} onChange={(e) => setFilterRevenda(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-20 px-3 py-2 text-xs" />
+                  <input id="filter-company-revenda" name="filter-company-revenda" value={filterRevenda} onChange={(e) => setFilterRevenda(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-20 px-3 py-2 text-xs" />
                 </td>
                 <td className="px-3 py-2">
-                  <input value={filterRazao} onChange={(e) => setFilterRazao(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-full px-3 py-2 text-xs" />
+                  <input id="filter-company-razao" name="filter-company-razao" value={filterRazao} onChange={(e) => setFilterRazao(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-full px-3 py-2 text-xs" />
                 </td>
                 <td className="px-3 py-2">
-                  <input value={filterFantasia} onChange={(e) => setFilterFantasia(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-full px-3 py-2 text-xs" />
+                  <input id="filter-company-fantasia" name="filter-company-fantasia" value={filterFantasia} onChange={(e) => setFilterFantasia(e.target.value)} placeholder="Filtrar..." className="ui-input min-h-0 w-full px-3 py-2 text-xs" />
                 </td>
                 <td className="px-3 py-2">
-                  <input value={filterCnpj} onChange={(e) => setFilterCnpj(e.target.value.replace(/\D/g, ''))} placeholder="Filtrar..." className="ui-input min-h-0 w-36 px-3 py-2 text-xs" />
+                  <input id="filter-company-cnpj" name="filter-company-cnpj" value={filterCnpj} onChange={(e) => setFilterCnpj(e.target.value.replace(/\D/g, ''))} placeholder="Filtrar..." className="ui-input min-h-0 w-36 px-3 py-2 text-xs" />
                 </td>
                 <td className="px-3 py-2">
-                  <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as '' | 'true' | 'false')} className="ui-input min-h-0 w-auto px-3 py-2 text-xs">
+                  <select id="filter-company-status" name="filter-company-status" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as '' | 'true' | 'false')} className="ui-input min-h-0 w-auto px-3 py-2 text-xs">
                     <option value="">Todos</option>
                     <option value="true">Ativo</option>
                     <option value="false">Inativo</option>
@@ -296,6 +296,8 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
                   <td className="px-4 py-3 font-mono text-xs text-brand-text">
                     {editingId === company.id ? (
                       <input
+                        id={`edit-company-empresa-${company.id}`}
+                        name={`edit-company-empresa-${company.id}`}
                         value={editForm.empresa}
                         type="number"
                         onChange={(e) => setEditForm((current) => ({ ...current, empresa: Number(e.target.value) }))}
@@ -306,6 +308,8 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
                   <td className="px-4 py-3 font-mono text-xs text-brand-text">
                     {editingId === company.id ? (
                       <input
+                        id={`edit-company-revenda-${company.id}`}
+                        name={`edit-company-revenda-${company.id}`}
                         value={editForm.revenda}
                         type="number"
                         onChange={(e) => setEditForm((current) => ({ ...current, revenda: Number(e.target.value) }))}
@@ -316,6 +320,8 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
                   <td className="px-4 py-3 font-medium text-brand-text">
                     {editingId === company.id ? (
                       <input
+                        id={`edit-company-razao-${company.id}`}
+                        name={`edit-company-razao-${company.id}`}
                         value={editForm.razaoSocial}
                         onChange={(e) => setEditForm((current) => ({ ...current, razaoSocial: e.target.value }))}
                         className="ui-input min-h-0 px-3 py-2 text-sm"
@@ -325,6 +331,8 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
                   <td className="px-4 py-3 text-brand-text-muted">
                     {editingId === company.id ? (
                       <input
+                        id={`edit-company-fantasia-${company.id}`}
+                        name={`edit-company-fantasia-${company.id}`}
                         value={editForm.nomeFantasia}
                         onChange={(e) => setEditForm((current) => ({ ...current, nomeFantasia: e.target.value }))}
                         className="ui-input min-h-0 px-3 py-2 text-sm"
@@ -334,6 +342,8 @@ export default function AdminCompaniesManager({ token, initialCompanies }: Props
                   <td className="px-4 py-3 font-mono text-xs text-brand-text-muted">
                     {editingId === company.id ? (
                       <input
+                        id={`edit-company-cnpj-${company.id}`}
+                        name={`edit-company-cnpj-${company.id}`}
                         value={editForm.cnpj}
                         onChange={(e) => setEditForm((current) => ({ ...current, cnpj: e.target.value.replace(/\D/g, '').slice(0, 14) }))}
                         className="ui-input min-h-0 px-3 py-2 text-sm"
@@ -415,8 +425,10 @@ function CompanyFields({
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div>
-        <label className="ui-label">Empresa</label>
+        <label htmlFor="company-empresa" className="ui-label">Empresa</label>
         <input
+          id="company-empresa"
+          name="company-empresa"
           type="number"
           required
           value={form.empresa}
@@ -425,8 +437,10 @@ function CompanyFields({
         />
       </div>
       <div>
-        <label className="ui-label">Revenda</label>
+        <label htmlFor="company-revenda" className="ui-label">Revenda</label>
         <input
+          id="company-revenda"
+          name="company-revenda"
           type="number"
           required
           value={form.revenda}
@@ -435,8 +449,10 @@ function CompanyFields({
         />
       </div>
       <div>
-        <label className="ui-label">Razão Social</label>
+        <label htmlFor="company-razao-social" className="ui-label">Razão Social</label>
         <input
+          id="company-razao-social"
+          name="company-razao-social"
           type="text"
           required
           value={form.razaoSocial}
@@ -445,8 +461,10 @@ function CompanyFields({
         />
       </div>
       <div>
-        <label className="ui-label">Nome Fantasia</label>
+        <label htmlFor="company-nome-fantasia" className="ui-label">Nome Fantasia</label>
         <input
+          id="company-nome-fantasia"
+          name="company-nome-fantasia"
           type="text"
           required
           value={form.nomeFantasia}
@@ -455,8 +473,10 @@ function CompanyFields({
         />
       </div>
       <div className="md:col-span-2">
-        <label className="ui-label">CNPJ (somente números)</label>
+        <label htmlFor="company-cnpj" className="ui-label">CNPJ (somente números)</label>
         <input
+          id="company-cnpj"
+          name="company-cnpj"
           type="text"
           required
           value={form.cnpj}

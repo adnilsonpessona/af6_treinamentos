@@ -119,6 +119,8 @@ export default function SearchableSelect({
             <div className="flex items-center gap-2 rounded-2xl border border-brand-border/70 bg-brand-light px-3 py-2">
               <Search size={13} className="text-brand-text-muted flex-shrink-0" />
               <input
+                id="searchable-select-search"
+                name="searchable-select-search"
                 ref={searchRef}
                 type="text"
                 value={search}

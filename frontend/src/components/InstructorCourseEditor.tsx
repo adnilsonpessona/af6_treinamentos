@@ -363,11 +363,11 @@ export default function InstructorCourseEditor({ token, course: initial, categor
             </div>
             <div className="ui-card-muted space-y-2 p-4">
               <label className="flex items-center gap-2 text-sm text-brand-text">
-                <input type="checkbox" checked={availableForAllCompanies} onChange={(e) => setAvailableForAllCompanies(e.target.checked)} />
+                <input id="edit-course-all-companies" name="edit-course-all-companies" type="checkbox" checked={availableForAllCompanies} onChange={(e) => setAvailableForAllCompanies(e.target.checked)} />
                 Disponível para todas as empresas
               </label>
               <label className="flex items-center gap-2 text-sm text-brand-text">
-                <input type="checkbox" checked={availableForAllDepartments} onChange={(e) => setAvailableForAllDepartments(e.target.checked)} />
+                <input id="edit-course-all-departments" name="edit-course-all-departments" type="checkbox" checked={availableForAllDepartments} onChange={(e) => setAvailableForAllDepartments(e.target.checked)} />
                 Disponível para todos os departamentos
               </label>
             </div>
@@ -419,6 +419,8 @@ export default function InstructorCourseEditor({ token, course: initial, categor
               </button>
               <p className="mt-1 text-xs text-brand-text-muted">JPEG, PNG ou WebP. Recomendado: 16:9.</p>
               <input
+                id="course-thumbnail-upload"
+                name="course-thumbnail-upload"
                 ref={thumbInput}
                 type="file"
                 accept="image/jpeg,image/png,image/webp"
