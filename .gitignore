@@ -22,10 +22,7 @@ publish/
 *.ncrunch*
 
 # Uploads / local videos
-videos/*.mp4
-videos/*.webm
-videos/*.mkv
-videos/*.avi
+videos/
 uploads/
 
 # Certificates
@@ -38,7 +35,4 @@ uploads/
 .DS_Store
 Thumbs.db
 
-videos//*.mp4
-videos//.webm
-videos/**/.mkv
-videos/**/*.avi
+
