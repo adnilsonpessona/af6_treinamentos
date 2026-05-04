@@ -37,3 +37,8 @@ uploads/
 # OS
 .DS_Store
 Thumbs.db
+
+videos//*.mp4
+videos//.webm
+videos/**/.mkv
+videos/**/*.avi
